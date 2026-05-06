@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Álbum Panini FIFA Mundial 2026</title>
+  <meta name="description" content="Seguimiento de tu álbum Panini FIFA World Cup 2026 — 980 láminas, 48 selecciones." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────── -->
+  <header>
+    <div class="header-inner">
+      <h1>⚽ Álbum Panini — FIFA Mundial 2026</h1>
+      <div class="actions">
+        <button class="btn" id="btn-copy">📋 Copiar faltantes</button>
+        <button class="btn" id="btn-dl">⬇️ Descargar lista</button>
+        <button class="btn danger" id="btn-reset">🗑️ Reiniciar</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Resumen global ─────────────────────────────── -->
+  <div class="summary">
+    <div class="prog-global"><div id="prog-bar" style="width:0%"></div></div>
+    <div class="summary-counts">
+      <span>✅ Tengo: <strong id="cnt-got">0</strong></span>
+      <span>❌ Faltan: <strong id="cnt-miss">0</strong></span>
+      <span>🔁 Repetidas: <strong id="cnt-rep">0</strong></span>
+      <span>📊 Total: <strong id="cnt-total">0</strong></span>
+      <span id="cnt-pct" style="margin-left:auto;color:var(--accent2);font-weight:700;font-size:1rem"></span>
+    </div>
+  </div>
+
+  <!-- ── Navegación grupos + búsqueda ──────────────── -->
+  <div class="nav-wrap">
+    <div>
+      <input class="search-box" id="search" type="text" placeholder="🔍 Buscar país…" />
+    </div>
+    <div id="group-nav"></div>
+  </div>
+
+  <!-- ── Grid de países ─────────────────────────────── -->
+  <div id="grid"></div>
+
+  <!-- ── Modal de stickers de un país ──────────────── -->
+  <div class="modal hidden" id="modal">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <h2 id="modal-title">País</h2>
+        <div style="display:flex;align-items:center;gap:.5rem">
+          <span class="counter" id="modal-counter"></span>
+          <button class="close-btn" id="modal-close" aria-label="Cerrar">✕</button>
+        </div>
+      </div>
+      <p class="hint">Haz clic en una lámina para cambiar su estado: vacía → tengo → repetida → vacía</p>
+      <div id="modal-grid"></div>
+    </div>
+  </div>
+
+  <!-- ── Scripts ───────────────────────────────────── -->
+  <script src="data/stickers.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
