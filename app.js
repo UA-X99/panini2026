@@ -33,11 +33,12 @@ function renderSummary() {
   const missing = total - got
   const pct     = (got / total * 100).toFixed(1)
 
-  document.getElementById('cnt-got').textContent     = got
-  document.getElementById('cnt-missing').textContent = missing
-  document.getElementById('cnt-rep').textContent     = rep
-  document.getElementById('pct-text').textContent    = pct + '%'
-  document.getElementById('prog-bar').style.width    = pct + '%'
+  document.getElementById('cnt-got').textContent   = got
+  document.getElementById('cnt-miss').textContent   = missing
+  document.getElementById('cnt-rep').textContent    = rep
+  document.getElementById('cnt-total').textContent  = total
+  document.getElementById('cnt-pct').textContent    = pct + '%'
+  document.getElementById('prog-bar').style.width   = pct + '%'
 }
 
 function renderGrid() {
@@ -190,18 +191,25 @@ function buildGroupNav() {
   })
 }
 
-// ── Evento búsqueda ──────────────────────────────────────────────────────────
-document.getElementById('search').addEventListener('input', e => {
-  searchText = e.target.value
-  renderGrid()
-})
-
 // ── Iniciar ───────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   buildGroupNav()
   renderAll()
-})
 
-document.getElementById('modal').addEventListener('click', e => {
-  if (e.target === document.getElementById('modal')) closeModal()
+  // Búsqueda
+  document.getElementById('search').addEventListener('input', e => {
+    searchText = e.target.value
+    renderGrid()
+  })
+
+  // Cerrar modal al hacer clic en el fondo o en el botón X
+  document.getElementById('modal').addEventListener('click', e => {
+    if (e.target === document.getElementById('modal')) closeModal()
+  })
+  document.getElementById('modal-close').addEventListener('click', closeModal)
+
+  // Botones de acción
+  document.getElementById('btn-copy').addEventListener('click', copyMissing)
+  document.getElementById('btn-dl').addEventListener('click', downloadMissing)
+  document.getElementById('btn-reset').addEventListener('click', resetAlbum)
 })
