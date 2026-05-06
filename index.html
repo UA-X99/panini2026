@@ -3,63 +3,144 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Álbum Panini FIFA Mundial 2026</title>
-  <meta name="description" content="Seguimiento de tu álbum Panini FIFA World Cup 2026 — 980 láminas, 48 selecciones." />
+  <title>Mi Álbum Panini — FIFA Mundial 2026</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- ── Header ─────────────────────────────────────── -->
-  <header>
-    <div class="header-inner">
-      <h1>⚽ Álbum Panini — FIFA Mundial 2026</h1>
-      <div class="actions">
-        <button class="btn" id="btn-copy">📋 Copiar faltantes</button>
-        <button class="btn" id="btn-dl">⬇️ Descargar lista</button>
-        <button class="btn danger" id="btn-reset">🗑️ Reiniciar</button>
+  <!-- ── Navbar ─────────────────────────────────────── -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <span class="brand-icon">🏆</span>
+      <div>
+        <div class="brand-title">MUNDIAL26</div>
+        <div class="brand-sub">MI ÁLBUM PANINI</div>
       </div>
     </div>
-  </header>
-
-  <!-- ── Resumen global ─────────────────────────────── -->
-  <div class="summary">
-    <div class="prog-global"><div id="prog-bar" style="width:0%"></div></div>
-    <div class="summary-counts">
-      <span>✅ Tengo: <strong id="cnt-got">0</strong></span>
-      <span>❌ Faltan: <strong id="cnt-miss">0</strong></span>
-      <span>🔁 Repetidas: <strong id="cnt-rep">0</strong></span>
-      <span>📊 Total: <strong id="cnt-total">0</strong></span>
-      <span id="cnt-pct" style="margin-left:auto;color:var(--accent2);font-weight:700;font-size:1rem"></span>
+    <div class="navbar-links">
+      <button class="nav-link active">📖 Álbum</button>
     </div>
+    <button class="btn-share" id="btn-share">↗ Compartir</button>
+  </nav>
+
+  <!-- ── Layout principal ───────────────────────────── -->
+  <div class="layout">
+
+    <!-- ── Sidebar ──────────────────────────────────── -->
+    <aside class="sidebar">
+
+      <!-- Cuenta regresiva -->
+      <div class="card countdown-card">
+        <div class="card-label">⏱ FALTAN PARA EL MUNDIAL</div>
+        <div class="countdown-grid">
+          <div class="cd-unit"><span id="cd-days">00</span><small>días</small></div>
+          <div class="cd-unit"><span id="cd-hrs">00</span><small>hrs</small></div>
+          <div class="cd-unit"><span id="cd-min">00</span><small>min</small></div>
+          <div class="cd-unit"><span id="cd-sec">00</span><small>seg</small></div>
+        </div>
+        <div class="cd-info">11 Jun 2026 · Estadio Azteca · México</div>
+      </div>
+
+      <!-- Stats del álbum -->
+      <div class="card album-card">
+        <div class="card-label">📒 MI ÁLBUM</div>
+        <div class="big-pct"><span id="pct-num">0</span>%</div>
+        <div class="pct-label">completado</div>
+        <div class="prog-global"><div id="prog-bar" style="width:0%"></div></div>
+
+        <div class="stats-row">
+          <div class="stat got"><span class="stat-icon">✓</span><strong id="cnt-got">0</strong><small>Tengo</small></div>
+          <div class="stat miss"><strong id="cnt-miss">0</strong><small>Faltan</small></div>
+          <div class="stat rep"><span class="stat-icon">↻</span><strong id="cnt-rep">0</strong><small>Extras</small></div>
+        </div>
+        <div class="stats-note">980 stickers totales en el álbum</div>
+        <div class="stats-note" style="margin-bottom:.75rem">Lista de <span id="cnt-miss2">0</span> stickers faltantes:</div>
+
+        <div class="actions-col">
+          <button class="btn-outline" id="btn-copy">📋 Copiar lista</button>
+          <button class="btn-yellow" id="btn-dl">⬇ Descargar TXT</button>
+        </div>
+      </div>
+
+      <!-- Especiales -->
+      <div class="card specials-card">
+        <div class="specials-header">
+          <span>⭐ Stickers Especiales</span>
+          <span id="spec-info" class="spec-info"></span>
+        </div>
+        <button class="btn-outline full" id="btn-specials">Ver especiales</button>
+      </div>
+
+      <!-- Reset -->
+      <button class="btn-reset" id="btn-reset">↺ Resetear álbum</button>
+    </aside>
+
+    <!-- ── Contenido principal ───────────────────────── -->
+    <main class="main-content">
+      <h1 class="album-title">ÁLBUM PANINI</h1>
+      <p class="album-sub">FIFA World Cup 2026™ · 48 selecciones · 980 stickers</p>
+
+      <!-- Filtros -->
+      <div class="filters">
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input class="search-box" id="search" type="text" placeholder="Buscar país..." />
+        </div>
+        <div class="filter-status" id="filter-status">
+          <button class="fs-btn active" data-status="ALL">Todos</button>
+          <button class="fs-btn" data-status="progress">▶ En progreso</button>
+          <button class="fs-btn" data-status="complete">✓ Completos</button>
+          <button class="fs-btn" data-status="empty">○ Sin empezar</button>
+        </div>
+        <select class="filter-conf" id="filter-conf">
+          <option value="ALL">Todas las conf.</option>
+          <option value="UEFA">UEFA</option>
+          <option value="CONMEBOL">CONMEBOL</option>
+          <option value="CONCACAF">CONCACAF</option>
+          <option value="CAF">CAF</option>
+          <option value="AFC">AFC</option>
+          <option value="OFC">OFC</option>
+        </select>
+      </div>
+
+      <!-- Nav grupos -->
+      <div id="group-nav" class="group-nav"></div>
+
+      <!-- Grid de países -->
+      <div id="grid" class="grid"></div>
+    </main>
   </div>
 
-  <!-- ── Navegación grupos + búsqueda ──────────────── -->
-  <div class="nav-wrap">
-    <div>
-      <input class="search-box" id="search" type="text" placeholder="🔍 Buscar país…" />
-    </div>
-    <div id="group-nav"></div>
-  </div>
-
-  <!-- ── Grid de países ─────────────────────────────── -->
-  <div id="grid"></div>
-
-  <!-- ── Modal de stickers de un país ──────────────── -->
+  <!-- ── Modal stickers país ────────────────────────── -->
   <div class="modal hidden" id="modal">
     <div class="modal-inner">
       <div class="modal-head">
-        <h2 id="modal-title">País</h2>
-        <div style="display:flex;align-items:center;gap:.5rem">
-          <span class="counter" id="modal-counter"></span>
-          <button class="close-btn" id="modal-close" aria-label="Cerrar">✕</button>
+        <div>
+          <h2 id="modal-title"></h2>
+          <p class="modal-sub" id="modal-sub"></p>
+        </div>
+        <div style="display:flex;align-items:center;gap:.6rem">
+          <span class="modal-counter" id="modal-counter"></span>
+          <button class="close-btn" id="modal-close">✕</button>
         </div>
       </div>
-      <p class="hint">Haz clic en una lámina para cambiar su estado: vacía → tengo → repetida → vacía</p>
-      <div id="modal-grid"></div>
+      <p class="hint">Clic en una lámina: vacía → tengo → repetida → vacía</p>
+      <div id="modal-grid" class="modal-grid"></div>
     </div>
   </div>
 
-  <!-- ── Scripts ───────────────────────────────────── -->
+  <!-- ── Modal especiales ───────────────────────────── -->
+  <div class="modal hidden" id="modal-spec">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div><h2>⭐ Stickers Especiales</h2></div>
+        <button class="close-btn" id="modal-spec-close">✕</button>
+      </div>
+      <p class="hint">Intro (00, FWC 1–8) e Historia (FWC 9–19) · Clic para cambiar estado</p>
+      <div id="modal-spec-grid" class="modal-grid"></div>
+    </div>
+  </div>
+
   <script src="data/stickers.js"></script>
   <script src="app.js"></script>
 </body>
