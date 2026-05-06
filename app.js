@@ -35,7 +35,7 @@ function renderAll() { renderSummary(); renderGrid() }
 
 function renderSummary() {
   const all = ALBUM.countries.flatMap(c => c.stickers)
-  const specials = [...ALBUM.intro, ...ALBUM.history]
+  const specials = [...ALBUM.intro, ...ALBUM.history, ...ALBUM.cocacola]
   const everything = [...all, ...specials]
   let got = 0, rep = 0
   everything.forEach(s => { const v=getS(s.num); if(v===1) got++; else if(v===2) rep++ })
@@ -53,7 +53,7 @@ function renderSummary() {
   // especiales
   const specGot = specials.filter(s => getS(s.num) >= 1).length
   document.getElementById('spec-info').textContent =
-    `00 · FWC 1-19 · ${specGot}/${specials.length}`
+    `00 · FWC 1-19 · CC 1-14 · ${specGot}/${specials.length}`
 }
 
 function getCountryStatus(c) {
@@ -143,7 +143,7 @@ function openSpecials() {
   const mgrid = document.getElementById('modal-spec-grid')
   mgrid.innerHTML = ''
 
-  const all = [...ALBUM.intro, ...ALBUM.history]
+  const all = [...ALBUM.intro, ...ALBUM.history, ...ALBUM.cocacola]
   all.forEach(s => {
     const el = document.createElement('div')
     el.className = 'sticker'

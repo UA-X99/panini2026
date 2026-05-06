@@ -5,7 +5,7 @@
   const RAW = [
     // GRUPO A
     { id:'mex', name:'México',           flag:'🇲🇽', conf:'CONCACAF', group:'A',
-      players:['Guillermo Ochoa','Jesús Corona','Rodolfo Cota','Jorge Sánchez','Kevin Álvarez','César Montes','Johan Vásquez','Néstor Araujo','Jesús Gallardo','Edson Álvarez','Carlos Rodríguez','Héctor Herrera','Roberto Alvarado','Érick Gutiérrez','Uriel Antuna','Hirving Lozano','Raúl Jiménez','Henry Martín'] },
+      players:['Luis Malagón','Jesús Gallardo','Johan Vásquez','César Montes','Israel Reyes','Jorge Sánchez','Orbelín Pineda','Diego Lainez','Carlos Rodríguez','Marcel Ruiz','Edson Álvarez','Érick Sánchez','Raúl Jiménez','Santiago Giménez','Hirving Lozano','Henry Martín','Roberto Alvarado','Guillermo Ochoa'] },
     { id:'rsa', name:'Sudáfrica',         flag:'🇿🇦', conf:'CAF',     group:'A',
       players:['Ronwen Williams','Bruce Bvuma','Veli Mothwa','Siyanda Xulu','Mothobi Mvala','Nkosinathi Sibisi','Grant Kekana','Terrence Mashego','Teboho Mokoena','Bongani Zungu','Sipho Mbule','Percy Tau','Keagan Dolly','Themba Zwane','Sibongakonke Mbatha','Evidence Makgopa','Lyle Foster','Bradley Grobler'] },
     { id:'kor', name:'Corea del Sur',     flag:'🇰🇷', conf:'AFC',     group:'A',
@@ -23,7 +23,7 @@
       players:['Yann Sommer','Gregor Kobel','Jonas Omlin','Silvan Widmer','Manuel Akanji','Fabian Schär','Ricardo Rodríguez','Nico Elvedi','Granit Xhaka','Remo Freuler','Michel Aebischer','Xherdan Shaqiri','Fabian Rieder','Christian Fassnacht','Ardon Jashari','Breel Embolo','Ruben Vargas','Dan Ndoye'] },
     // GRUPO C
     { id:'bra', name:'Brasil',            flag:'🇧🇷', conf:'CONMEBOL', group:'C',
-      players:['Alisson','Ederson','Weverton','Danilo','Marquinhos','Thiago Silva','Alex Sandro','Eder Militão','Casemiro','Bruno Guimarães','Lucas Paquetá','Raphinha','Rodrygo','Vinícius Jr.','Gabriel Martinelli','Endrick','Richarlison','Gabriel Jesus'] },
+      players:['Alisson Becker','Bento','Éder Militão','Lucas Paquetá','Gabriel Martinelli','Gabriel Magalhães','Casemiro','Raphinha','Marquinhos','Danilo','Wesley','Bruno Guimarães','Luiz Henrique','Vinícius Júnior','Estêvão','Matheus Cunha','Rodrygo','João Pedro'] },
     { id:'mar', name:'Marruecos',         flag:'🇲🇦', conf:'CAF',     group:'C',
       players:['Yassine Bounou','Munir Mohamedi','Ahmed Tagnaouti','Achraf Hakimi','Noussair Mazraoui','Romain Saïss','Jawad El Yamiq','Nayef Aguerd','Azzedine Ounahi','Selim Amallah','Sofyan Amrabat','Hakim Ziyech','Sofiane Boufal','Abde Ezzalzouli','Ilias Chair','Youssef En-Nesyri','Ayoub El Kaabi','Ryan Mmaee'] },
     { id:'hai', name:'Haití',             flag:'🇭🇹', conf:'CONCACAF', group:'C',
@@ -47,10 +47,10 @@
     { id:'civ', name:'Costa de Marfil',   flag:'🇨🇮', conf:'CAF',     group:'E',
       players:['Yahia Fofana','Badra Ali Sangaré','Sylvain Gbohouo','Simon Deli','Wilfried Singo','Odilon Kossounou','Ghislain Konan','Serge Aurier','Franck Kessié','Ibrahim Sangaré','Seko Fofana','Maxwel Cornet','Nicolas Pépé','Jean-Philippe Krasso','Karim Konaté','Sebastién Haller','Wilfried Zaha','Oumar Diakité'] },
     { id:'ecu', name:'Ecuador',           flag:'🇪🇨', conf:'CONMEBOL', group:'E',
-      players:['Alexander Domínguez','Hernán Galíndez','Máximo Banguera','Angelo Preciado','Piero Hincapié','Robert Arboleda','Pervis Estupiñán','Diego Palacios','Carlos Gruezo','Moisés Caicedo','Alan Franco','Gonzalo Plata','Djorkaeff Reasco','Romario Ibarra','Jeremy Sarmiento','Enner Valencia','Michael Estrada','Kevin Rodríguez'] },
+      players:['Enner Valencia','Kevin Rodríguez','Gonzalo Plata','Leonardo Campana','Alan Franco','Hernán Galíndez','Gonzalo Valle','Alan Minda','Nilson Angulo','Pedro Vite','Moisés Caicedo','Joel Ordóñez','Kendry Páez','John Yeboah','Pervis Estupiñán','Willian Pacho','Piero Hincapié','Ángelo Preciado'] },
     // GRUPO F
     { id:'ned', name:'Países Bajos',      flag:'🇳🇱', conf:'UEFA',    group:'F',
-      players:['Bart Verbruggen','Mark Flekken','Remko Pasveer','Denzel Dumfries','Virgil van Dijk','Matthijs de Ligt','Nathan Aké','Stefan de Vrij','Frenkie de Jong','Tijjani Reijnders','Teun Koopmeiners','Xavi Simons','Steven Bergwijn','Donyell Malen','Wout Weghorst','Cody Gakpo','Memphis Depay','Brian Brobbey'] },
+      players:['Donyell Malen','Bart Verbruggen','Memphis Depay','Wout Weghorst','Justin Kluivert','Xavi Simons','Ryan Gravenberch','Tijjani Reijnders','Teun Koopmeiners','Frenkie de Jong','Denzel Dumfries','Jan Paul van Hecke','Virgil van Dijk','Micky van de Ven','Jeremie Frimpong','Jurriën Timber','Nathan Aké','Cody Gakpo'] },
     { id:'jpn', name:'Japón',             flag:'🇯🇵', conf:'AFC',     group:'F',
       players:['Shuichi Gonda','Zion Suzuki','Daniel Schmidt','Hiroki Sakai','Maya Yoshida','Ko Itakura','Yuto Nagatomo','Shogo Taniguchi','Wataru Endo','Hidemasa Morita','Sho Ito','Daichi Kamada','Junya Ito','Ritsu Doan','Takefusa Kubo','Ayase Ueda','Kaoru Mitoma','Koki Ogawa'] },
     { id:'swe', name:'Suecia',            flag:'🇸🇪', conf:'UEFA',    group:'F',
@@ -68,7 +68,7 @@
       players:['Oliver Sail','Stefan Marinovic','Michael Woud','Liberato Cacace','Winston Reid','Nando Pijnaker','Michael Boxall','Myer Bevan','Joe Bell','Clayton Lewis','Matthew Garbett','Sarpreet Singh','Alex Greive','Marko Stamenic','Tim Payne','Chris Wood','Callan Elliot','Dane Ingham'] },
     // GRUPO H
     { id:'esp', name:'España',            flag:'🇪🇸', conf:'UEFA',    group:'H',
-      players:['Unai Simón','David Raya','Álex Remiro','Dani Carvajal','Aymeric Laporte','Pau Cubarsí','Alejandro Grimaldo','Robin Le Normand','Rodri','Fabián Ruiz','Martín Zubimendi','Pedri','Gavi','Dani Olmo','Fermín López','Lamine Yamal','Nico Williams','Álvaro Morata'] },
+      players:['Ferran Torres','Mikel Oyarzabal','Rodri','Unai Simón','Lamine Yamal','Nico Williams','Dani Olmo','Álvaro Morata','Mikel Merino','Fabián Ruiz','Pedri','Martín Zubimendi','Marc Cucurella','Dani Carvajal','Pedro Porro','Dean Huijsen','Aymeric Laporte','Robin Le Normand'] },
     { id:'cpv', name:'Cabo Verde',        flag:'🇨🇻', conf:'CAF',     group:'H',
       players:['Vozinha','Edu Água','Cláudio Filipe','Stopira','Marco Moreno','Dylan Tavares','Roberto','Filipe Moreira','Jamiro Monteiro','Ryan Mendes','Garry Rodrigues','Fali Candé','Nuno Tavares','Kenny Rocha','Lúcio Antunes','Jovane Cabral','Júlio Tavares','Bruno Lopes'] },
     { id:'ksa', name:'Arabia Saudí',      flag:'🇸🇦', conf:'AFC',     group:'H',
@@ -77,7 +77,7 @@
       players:['Fernando Muslera','Sebastián Sosa','Martín Campaña','Guillermo Varela','Diego Godín','Sebastián Coates','Mathías Olivera','Ronald Araújo','Lucas Torreira','Manuel Ugarte','Rodrigo Bentancur','Federico Valverde','Nicolás De La Cruz','Maxi Gómez','Brian Rodríguez','Luis Suárez','Darwin Núñez','Facundo Torres'] },
     // GRUPO I
     { id:'fra', name:'Francia',           flag:'🇫🇷', conf:'UEFA',    group:'I',
-      players:["Mike Maignan","Alphonse Areola","Brice Samba","William Saliba","Raphaël Varane","Lucas Digne","Theo Hernández","Ibrahima Konaté","N'Golo Kanté","Aurélien Tchouaméni","Adrien Rabiot","Antoine Griezmann","Ousmane Dembélé","Kingsley Coman","Marcus Thuram","Kylian Mbappé","Randal Kolo Muani","Bradley Barcola"] },
+      players:['Hugo Ekitiké','Kingsley Coman','Ousmane Dembélé','Aurélien Tchouaméni','Mike Maignan','Désiré Doué','Kylian Mbappé','Bradley Barcola','Adrien Rabiot','Manu Koné','Eduardo Camavinga','Michael Olise','Lucas Digne','Dayot Upamecano','Ibrahima Konaté','Jules Koundé','William Saliba','Théo Hernández'] },
     { id:'sen', name:'Senegal',           flag:'🇸🇳', conf:'CAF',     group:'I',
       players:['Edouard Mendy','Alfred Gomis','Seny Dieng','Bouna Sarr','Kalidou Koulibaly','Abdou Diallo','Ismail Jakobs','Formose Mendy','Nampalys Mendy','Pape Gueye','Lamine Camara','Ismaila Sarr','Krepin Diatta','Iliman Ndiaye','Nicolas Jackson','Sadio Mané','Bamba Dieng','Habib Diallo'] },
     { id:'irq', name:'Irak',              flag:'🇮🇶', conf:'AFC',     group:'I',
@@ -86,7 +86,7 @@
       players:['Ørjan Nyland','Rune Jarstein','Jørgen Strand Larsen','Birger Meling','Kristoffer Ajer','Stefan Strandberg','Olav Bjørn Moen','Leo Østigård','Sander Berge','Patrick Berg','Fredrik Aursnes','Martin Ødegaard','Morten Thorsby','Mathias Normann','Mohamed Elyounoussi','Erling Haaland','Alexander Sørloth','Antonio Nusa'] },
     // GRUPO J
     { id:'arg', name:'Argentina',         flag:'🇦🇷', conf:'CONMEBOL', group:'J',
-      players:['Emiliano Martínez','Gerónimo Rulli','Juan Musso','Nahuel Molina','Cristian Romero','Nicolás Otamendi','Nicolás Tagliafico','Lisandro Martínez','Rodrigo De Paul','Enzo Fernández','Leandro Paredes','Alexis Mac Allister','Giovani Lo Celso','Ángel Di María','Alejandro Garnacho','Lionel Messi','Lautaro Martínez','Julián Álvarez'] },
+      players:['Nico González','Franco Mastantuono','Giuliano Simeone','Emiliano Martínez','Julián Álvarez','Enzo Fernández','Leandro Paredes','Lionel Messi','Lautaro Martínez','Alexis Mac Allister','Nico Paz','Rodrigo De Paul','Exequiel Palacios','Cristian Romero','Leonardo Balerdi','Nicolás Otamendi','Nahuel Molina','Nicolás Tagliafico'] },
     { id:'alg', name:'Argelia',           flag:'🇩🇿', conf:'CAF',     group:'J',
       players:["Raïs M'Bolhi",'Alexandre Oukidja','Yassine Chourar','Ramy Bensebaini','Aïssa Mandi','Mohamed Fares','Djamel Benlamri','Yacine Adli','Nabil Bentaleb','Ismaël Bennacer','Sofiane Feghouli','Riyad Mahrez','Andy Delort','Said Benrahma','Islam Slimani','Baghdad Bounedjah','Youcef Belaïli','Amar Bendjama'] },
     { id:'aut', name:'Austria',           flag:'🇦🇹', conf:'UEFA',    group:'J',
@@ -95,13 +95,13 @@
       players:['Yahia Nader','Mohammad Al-Shagran','Amer Shafi','Yazan Al-Naimat','Baha Faisal','Anas Bani Yaseen','Badr Naji','Yosef Alamarat','Ahmad Sarour','Mahmoud Almardi','Yazan Al-Arab','Musa Al-Tamari','Mohammad Abu Zema','Hamza Al-Dardour','Oday Dabbagh','Motaz Nouri','Zaid Al-Rashdan','Ahmad Rawabdeh'] },
     // GRUPO K
     { id:'por', name:'Portugal',          flag:'🇵🇹', conf:'UEFA',    group:'K',
-      players:['Rui Patrício','Diogo Costa','José Sá','João Cancelo','Rúben Dias','Pepe','Nuno Mendes','António Silva','João Palhinha','Vitinha','Bruno Fernandes','Bernardo Silva','Rafael Leão','Pedro Neto','João Félix','Cristiano Ronaldo','Gonçalo Ramos','Francisco Conceição'] },
+      players:['João Félix','Diogo Costa','Francisco Trincão','João Neves','Cristiano Ronaldo','Vitinha','Rúben Neves','Bruno Fernandes','Bernardo Silva','Gonçalo Inácio','Nuno Mendes','Diogo Dalot','João Cancelo','Rúben Dias','José Sá','Rafael Leão','Pedro Neto','Gonçalo Ramos'] },
     { id:'cod', name:'RD Congo',          flag:'🇨🇩', conf:'CAF',     group:'K',
       players:['Joël Kiassumbua','Leyden Dieu-Merci','Lionel Mpasi','Chancel Mbemba','Arthur Masuaku','Marcel Tisserand','Fiston Mayele','Nathan Ngoy','Samuel Bastien','Silas Mvumpa','Théo Bongonda','Yannick Bolasie','Firmin Mubele','Gaël Kakuta','Jonathan Bolingi','Cédric Bakambu','Benik Afobe','Dieumerci Mbokani'] },
     { id:'uzb', name:'Uzbekistán',        flag:'🇺🇿', conf:'AFC',     group:'K',
       players:['Abduvohid Nishonov','Jasurbek Yakhshiboev','Dilshod Yusupov','Khusan Murodov','Sanjar Tursunov','Otabek Shukurov','Nodir Ahmedov','Javokhir Sidiqov','Bobur Abdullaev','Jaloliddin Masharipov','Otabek Rakhimov','Sardor Rashidov','Farrukh Tashkentov','Sherzod Nazarov','Husan Hatamov','Eldor Shomurodov','Abbosbek Fayzullaev','Dostonbek Khamdamov'] },
     { id:'col', name:'Colombia',          flag:'🇨🇴', conf:'CONMEBOL', group:'K',
-      players:['David Ospina','Camilo Vargas','Kevin Mier','Santiago Arias','Dávinson Sánchez','Yerry Mina','William Tesillo','Daniel Muñoz','Wilmar Barrios','Mateus Uribe','Richard Ríos','Juan Cuadrado','James Rodríguez','Jhon Arias','Jhon Córdoba','Luis Díaz','Rafael Santos Borré','Radamel Falcao'] },
+      players:['Luis Díaz','Jhon Córdoba','Jorge Carrascal','Richard Ríos','David Ospina','Camilo Vargas','Jhon Arias','Juan Fernando Quintero','Luis Suárez','James Rodríguez','Kevin Castaño','Jefferson Lerma','Santiago Arias','Daniel Muñoz','Yerry Mina','Johan Mojica','Dávinson Sánchez','Jhon Lucumí'] },
     // GRUPO L
     { id:'eng', name:'Inglaterra',        flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿', conf:'UEFA',    group:'L',
       players:['Jordan Pickford','Aaron Ramsdale','Dean Henderson','Kieran Trippier','John Stones','Marc Guehi','Luke Shaw','Ezri Konsa','Declan Rice','Kobbie Mainoo','Trent Alexander-Arnold','Jude Bellingham','Phil Foden','Bukayo Saka','Marcus Rashford','Harry Kane','Ollie Watkins','Cole Palmer'] },
@@ -141,6 +141,23 @@
     { num:979, code:'FWC 19', type:'history', label:'Sede — USA · Canadá · México 2026' },
   ]
 
+  const COCACOLA = [
+    { num:980, code:'CC 1',  type:'special', label:'Lautaro Martínez — Argentina',    special:true },
+    { num:981, code:'CC 2',  type:'special', label:'Emiliano Martínez — Argentina',   special:true },
+    { num:982, code:'CC 3',  type:'special', label:'Virgil van Dijk — Países Bajos',  special:true },
+    { num:983, code:'CC 4',  type:'special', label:'Lamine Yamal — España',           special:true },
+    { num:984, code:'CC 5',  type:'special', label:'Federico Valverde — Uruguay',     special:true },
+    { num:985, code:'CC 6',  type:'special', label:'Alphonso Davies — Canadá',        special:true },
+    { num:986, code:'CC 7',  type:'special', label:'Joshua Kimmich — Alemania',       special:true },
+    { num:987, code:'CC 8',  type:'special', label:'Jefferson Lerma — Colombia',      special:true },
+    { num:988, code:'CC 9',  type:'special', label:'Raúl Jiménez — México',           special:true },
+    { num:989, code:'CC 10', type:'special', label:'Santiago Giménez — México',       special:true },
+    { num:990, code:'CC 11', type:'special', label:'Harry Kane — Inglaterra',         special:true },
+    { num:991, code:'CC 12', type:'special', label:'Enner Valencia — Ecuador',        special:true },
+    { num:992, code:'CC 13', type:'special', label:'Gabriel Magalhães — Brasil',      special:true },
+    { num:993, code:'CC 14', type:'special', label:'Joško Gvardiol — Croacia',        special:true },
+  ]
+
   let nextNum = INTRO.length  // empieza en 9
   const COUNTRIES = RAW.map(c => {
     const CC = c.id.toUpperCase()
@@ -159,6 +176,7 @@
     intro: INTRO,
     countries: COUNTRIES,
     history: HISTORY,
-    total: 980,
+    cocacola: COCACOLA,
+    total: 994,
   }
 })()
