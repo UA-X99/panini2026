@@ -50,7 +50,7 @@
       players:['Enner Valencia','Kevin Rodríguez','Gonzalo Plata','Leonardo Campana','Alan Franco','Hernán Galíndez','Gonzalo Valle','Alan Minda','Nilson Angulo','Pedro Vite','Moisés Caicedo','Joel Ordóñez','Kendry Páez','John Yeboah','Pervis Estupiñán','Willian Pacho','Piero Hincapié','Ángelo Preciado'] },
     // GRUPO F
     { id:'ned', name:'Países Bajos',      flag:'🇳🇱', conf:'UEFA',    group:'F',
-      players:['Donyell Malen','Bart Verbruggen','Memphis Depay','Wout Weghorst','Justin Kluivert','Xavi Simons','Ryan Gravenberch','Tijjani Reijnders','Teun Koopmeiners','Frenkie de Jong','Denzel Dumfries','Jan Paul van Hecke','Virgil van Dijk','Micky van de Ven','Jeremie Frimpong','Jurriën Timber','Nathan Aké','Cody Gakpo'] },
+      players:['Bart Verbruggen','Virgil van Dijk','Jan Paul van Hecke','Denzel Dumfries','Micky van de Ven','Jeremie Frimpong','Jurriën Timber','Nathan Aké','Frenkie de Jong','Teun Koopmeiners','Tijjani Reijnders','Ryan Gravenberch','Xavi Simons','Memphis Depay','Donyell Malen','Cody Gakpo','Wout Weghorst','Justin Kluivert'] },
     { id:'jpn', name:'Japón',             flag:'🇯🇵', conf:'AFC',     group:'F',
       players:['Ritsu Doan','Keito Nakamura','Daichi Kamada','Koki Ogawa','Takumi Minamino','Ayase Ueda','Henry Heroki Mochizuki','Ayumu Seko','Shuto Machino','Takefusa Kubo','Junya Ito','Zion Suzuki','Junnosuke Suzuki','Kaishu Sano','Yuki Soma','Ao Tanaka','Shogo Taniguchi','Tsuyoshi Watanabe'] },
     { id:'swe', name:'Suecia',            flag:'🇸🇪', conf:'UEFA',    group:'F',
