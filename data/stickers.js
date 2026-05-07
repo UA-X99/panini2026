@@ -7,7 +7,7 @@
     { id:'mex', name:'México',           flag:'🇲🇽', conf:'CONCACAF', group:'A',
       players:['Luis Malagón','Jesús Gallardo','Johan Vásquez','César Montes','Israel Reyes','Jorge Sánchez','Orbelín Pineda','Diego Lainez','Edson Álvarez','Carlos Rodríguez','Marcel Ruiz','Érick Sánchez','Raúl Jiménez','Santiago Giménez','Hirving Lozano','Alexis Vega','César Huerta','Roberto Alvarado'] },
     { id:'rsa', name:'Sudáfrica',         flag:'🇿🇦', conf:'CAF',     group:'A',
-      players:['Ronwen Williams','Bruce Bvuma','Veli Mothwa','Siyanda Xulu','Mothobi Mvala','Nkosinathi Sibisi','Grant Kekana','Terrence Mashego','Teboho Mokoena','Bongani Zungu','Sipho Mbule','Percy Tau','Keagan Dolly','Themba Zwane','Sibongakonke Mbatha','Evidence Makgopa','Lyle Foster','Bradley Grobler'] },
+      players:['Sipho Chaine','Samukele Kabini','Teboho Mokoena','Oswin Appollis','Khuliso Mudau','Thalente Mbatha','Bathusi Aubaas','Iqraam Rayners','Lyle Foster','Sipho Mbule','Mohau Nkota','Aubrey Modiba','Mbekezeli Mbokazi','Percy Tau','Keagan Dolly','Themba Zwane','Evidence Makgopa','Bradley Grobler'] },
     { id:'kor', name:'Corea del Sur',     flag:'🇰🇷', conf:'AFC',     group:'A',
       players:['Kim Seung-gyu','Jo Hyeon-woo','Song Bum-keun','Kim Tae-hwan','Kim Young-gwon','Lee Young-jae','Kim Min-jae','Lee Yong','Hwang In-beom','Jung Woo-young','Lee Jae-sung','Paik Seung-ho','Lee Kang-in','Kwon Chang-hoon','Na Sang-ho','Heung-min Son','Hwang Hee-chan','Hwang Ui-jo'] },
     { id:'cze', name:'República Checa',   flag:'🇨🇿', conf:'UEFA',    group:'A',
