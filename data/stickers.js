@@ -5,7 +5,7 @@
   const RAW = [
     // GRUPO A
     { id:'mex', name:'México',           flag:'🇲🇽', conf:'CONCACAF', group:'A',
-      players:['Luis Malagón','Jesús Gallardo','Johan Vásquez','César Montes','Israel Reyes','Jorge Sánchez','Orbelín Pineda','Diego Lainez','Carlos Rodríguez','Marcel Ruiz','Edson Álvarez','Érick Sánchez','Raúl Jiménez','Santiago Giménez','Hirving Lozano','Henry Martín','Roberto Alvarado','Guillermo Ochoa'] },
+      players:['Luis Malagón','Jesús Gallardo','Johan Vásquez','César Montes','Israel Reyes','Jorge Sánchez','Orbelín Pineda','Diego Lainez','Edson Álvarez','Carlos Rodríguez','Marcel Ruiz','Érick Sánchez','Raúl Jiménez','Santiago Giménez','Hirving Lozano','Alexis Vega','César Huerta','Roberto Alvarado'] },
     { id:'rsa', name:'Sudáfrica',         flag:'🇿🇦', conf:'CAF',     group:'A',
       players:['Ronwen Williams','Bruce Bvuma','Veli Mothwa','Siyanda Xulu','Mothobi Mvala','Nkosinathi Sibisi','Grant Kekana','Terrence Mashego','Teboho Mokoena','Bongani Zungu','Sipho Mbule','Percy Tau','Keagan Dolly','Themba Zwane','Sibongakonke Mbatha','Evidence Makgopa','Lyle Foster','Bradley Grobler'] },
     { id:'kor', name:'Corea del Sur',     flag:'🇰🇷', conf:'AFC',     group:'A',
