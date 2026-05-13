@@ -77,16 +77,19 @@ function renderGrid() {
 
   countries.forEach(c => {
     const got   = c.stickers.filter(s => getS(s.num) >= 1).length
+    const rep   = c.stickers.filter(s => getS(s.num) === 2).length
     const total = c.stickers.length
     const pct   = Math.round(got/total*100)
 
     const card = document.createElement('div')
     card.className = 'country-card'
+    const repBadge = rep > 0
+      ? `<span class="rep-badge">↻ ${rep}</span>` : ''
     card.innerHTML = `
       <div class="card-top">
         <span class="flag">${c.flag}</span>
         <div style="min-width:0;flex:1">
-          <div class="country-name">${c.name}</div>
+          <div class="country-name">${c.name}${repBadge}</div>
           <span class="group-badge gb-${c.group}">G-${c.group}</span>
         </div>
       </div>
@@ -119,7 +122,9 @@ function openModal(country) {
 
   function refreshCounter() {
     const g = country.stickers.filter(s => getS(s.num) >= 1).length
-    document.getElementById('modal-counter').textContent = `${g}/${country.stickers.length}`
+    const r = country.stickers.filter(s => getS(s.num) === 2).length
+    document.getElementById('modal-counter').textContent =
+      `${g}/${country.stickers.length}` + (r > 0 ? `  ·  ↻ ${r} repetida${r>1?'s':''}` : '')
   }
 
   country.stickers.forEach(s => {
@@ -127,7 +132,11 @@ function openModal(country) {
     el.className = 'sticker'
     refreshSticker(el, s)
     el.addEventListener('click', () => {
-      cycleS(s.num); refreshSticker(el,s); refreshCounter(); renderAll()
+      const newVal = cycleS(s.num)
+      refreshSticker(el,s)
+      animateSticker(el, newVal)
+      refreshCounter()
+      renderAll()
     })
     mgrid.appendChild(el)
   })
@@ -149,7 +158,10 @@ function openSpecials() {
     el.className = 'sticker'
     refreshSticker(el, s)
     el.addEventListener('click', () => {
-      cycleS(s.num); refreshSticker(el,s); renderSummary()
+      const newVal = cycleS(s.num)
+      refreshSticker(el,s)
+      animateSticker(el, newVal)
+      renderSummary()
     })
     mgrid.appendChild(el)
   })
@@ -169,6 +181,13 @@ function refreshSticker(el, s) {
     <div class="st-label">${s.label}</div>
     <div class="st-state">${v===1?'✓ Tengo':v===2?'＋ Repetida':'○ Falta'}</div>
   `
+}
+
+function animateSticker(el, newVal) {
+  el.classList.remove('stamp-got','stamp-rep')
+  void el.offsetWidth // reflow para reiniciar anim
+  if (newVal===1) el.classList.add('stamp-got')
+  else if (newVal===2) el.classList.add('stamp-rep')
 }
 
 function closeModal() {
@@ -226,6 +245,198 @@ function resetAlbum() {
   state = {}; save(); renderAll(); closeModal(); closeSpecials()
 }
 
+// ── Estadísticas ─────────────────────────────────────────
+function openStats() {
+  const modal = document.getElementById('modal-stats')
+
+  // Summary boxes
+  const allSt = ALBUM.countries.flatMap(c => c.stickers)
+  const gotTotal = allSt.filter(s => getS(s.num) >= 1).length
+  const repTotal = allSt.filter(s => getS(s.num) === 2).length
+  const complete = ALBUM.countries.filter(c =>
+    c.stickers.every(s => getS(s.num) >= 1)
+  ).length
+
+  document.getElementById('ss-boxes').innerHTML = `
+    <div class="ss-box"><strong>${gotTotal}</strong><small>Láminas tengo</small></div>
+    <div class="ss-box"><strong>${repTotal}</strong><small>Repetidas</small></div>
+    <div class="ss-box"><strong>${complete}</strong><small>Países completos</small></div>
+  `
+
+  // Tabla por país
+  const tbody = document.getElementById('stats-tbody')
+  tbody.innerHTML = ''
+  const sorted = [...ALBUM.countries].sort((a,b) => {
+    const pa = a.stickers.filter(s=>getS(s.num)>=1).length / a.stickers.length
+    const pb = b.stickers.filter(s=>getS(s.num)>=1).length / b.stickers.length
+    return pb - pa
+  })
+  sorted.forEach(c => {
+    const got = c.stickers.filter(s=>getS(s.num)>=1).length
+    const rep = c.stickers.filter(s=>getS(s.num)===2).length
+    const pct = Math.round(got/c.stickers.length*100)
+    const tr = document.createElement('tr')
+    if (got === c.stickers.length) tr.className = 'complete-row'
+    tr.innerHTML = `
+      <td>${c.flag} ${c.name}</td>
+      <td><span class="group-badge gb-${c.group}">G-${c.group}</span></td>
+      <td>
+        <span class="pct-cell">${pct}%</span>
+        <span class="mini-bar-wrap"><span class="mini-bar-fill" style="width:${pct}%"></span></span>
+        <span style="font-size:.7rem;color:var(--muted);margin-left:.3rem">${got}/${c.stickers.length}</span>
+      </td>
+      <td style="color:#fb923c;font-weight:700">${rep > 0 ? `↻ ${rep}` : '—'}</td>
+    `
+    tbody.appendChild(tr)
+  })
+
+  modal.classList.remove('hidden')
+  document.body.style.overflow = 'hidden'
+}
+
+function closeStats() {
+  document.getElementById('modal-stats').classList.add('hidden')
+  document.body.style.overflow = ''
+}
+
+// ── Repetidas ─────────────────────────────────────────────
+function openRepeated() {
+  const modal   = document.getElementById('modal-rep')
+  const content = document.getElementById('rep-content')
+  content.innerHTML = ''
+
+  let totalRep = 0
+
+  ALBUM.countries.forEach(c => {
+    const reps = c.stickers.filter(s => getS(s.num) === 2)
+    if (!reps.length) return
+    totalRep += reps.length
+    const block = document.createElement('div')
+    block.className = 'rep-country-block'
+    block.innerHTML = `
+      <div class="rep-country-title">
+        ${c.flag} ${c.name}
+        <span class="rep-badge">↻ ${reps.length}</span>
+      </div>
+      <div class="rep-sticker-list">
+        ${reps.map(s=>`<span class="rep-chip">${s.code} · ${s.label}</span>`).join('')}
+      </div>
+    `
+    content.appendChild(block)
+  })
+
+  // Especiales repetidas
+  const specReps = [...ALBUM.intro,...ALBUM.history,...ALBUM.cocacola].filter(s=>getS(s.num)===2)
+  if (specReps.length) {
+    totalRep += specReps.length
+    const block = document.createElement('div')
+    block.className = 'rep-country-block'
+    block.innerHTML = `
+      <div class="rep-country-title">⭐ Especiales <span class="rep-badge">↻ ${specReps.length}</span></div>
+      <div class="rep-sticker-list">
+        ${specReps.map(s=>`<span class="rep-chip">${s.code} · ${s.label}</span>`).join('')}
+      </div>
+    `
+    content.appendChild(block)
+  }
+
+  if (!totalRep) {
+    content.innerHTML = '<p class="rep-empty">No tienes láminas repetidas todavía.</p>'
+  }
+
+  document.getElementById('rep-total-text').textContent =
+    `${totalRep} lámina${totalRep!==1?'s':''} repetida${totalRep!==1?'s':''} en total`
+
+  modal.classList.remove('hidden')
+  document.body.style.overflow = 'hidden'
+}
+
+function closeRepeated() {
+  document.getElementById('modal-rep').classList.add('hidden')
+  document.body.style.overflow = ''
+}
+
+function buildRepList() {
+  const lines = []
+  ALBUM.countries.forEach(c => {
+    const reps = c.stickers.filter(s=>getS(s.num)===2)
+    if (!reps.length) return
+    lines.push(`\n=== ${c.flag} ${c.name} (${reps.length} repetidas) ===`)
+    reps.forEach(s => lines.push(`  ${s.code} · Nº${s.num} · ${s.label}`))
+  })
+  return lines.join('\n').trim()
+}
+
+// ── Comparar con amigos ───────────────────────────────────
+function openCompare() {
+  const modal = document.getElementById('modal-cmp')
+  renderMyCode()
+  modal.classList.remove('hidden')
+  document.body.style.overflow = 'hidden'
+}
+
+function closeCompare() {
+  document.getElementById('modal-cmp').classList.add('hidden')
+  document.body.style.overflow = ''
+  document.getElementById('compare-result').classList.add('hidden')
+  document.getElementById('friend-code-input').value = ''
+}
+
+function renderMyCode() {
+  try {
+    const code = btoa(JSON.stringify(state))
+    document.getElementById('my-code-box').textContent = code
+  } catch(_) {
+    document.getElementById('my-code-box').textContent = '(Error al generar código)'
+  }
+}
+
+function runCompare() {
+  const input = document.getElementById('friend-code-input').value.trim()
+  const resultEl = document.getElementById('compare-result')
+  if (!input) { alert('Pega el código de tu amigo primero.'); return }
+
+  let friendState
+  try { friendState = JSON.parse(atob(input)) }
+  catch(_) { alert('Código inválido. Pide a tu amigo que lo copie de nuevo.'); return }
+
+  // Mis repetidas que a mi amigo le faltan (v=0 en su estado)
+  const allStickers = [
+    ...ALBUM.countries.flatMap(c=>c.stickers),
+    ...ALBUM.intro, ...ALBUM.history, ...ALBUM.cocacola
+  ]
+  const matches = allStickers.filter(s =>
+    getS(s.num) === 2 && (friendState[String(s.num)] || 0) === 0
+  )
+
+  resultEl.classList.remove('hidden')
+  if (!matches.length) {
+    resultEl.innerHTML = `
+      <h4>Resultado</h4>
+      <p class="compare-empty">Tu amigo ya tiene todas las láminas que tú tienes repetidas, o no te faltan coincidencias.</p>
+    `
+    return
+  }
+
+  // Agrupar por país
+  const byCountry = {}
+  matches.forEach(s => {
+    const country = ALBUM.countries.find(c=>c.stickers.includes(s))
+    const key = country ? `${country.flag} ${country.name}` : '⭐ Especiales'
+    if (!byCountry[key]) byCountry[key] = []
+    byCountry[key].push(s)
+  })
+
+  let html = `<h4>✅ ${matches.length} lámina${matches.length!==1?'s':''} tuyas que le faltan a tu amigo:</h4>`
+  Object.entries(byCountry).forEach(([k,stickers]) => {
+    html += `<p style="font-size:.75rem;color:var(--muted);margin:.5rem 0 .25rem"><strong style="color:var(--fg)">${k}</strong></p>`
+    html += `<div class="compare-chips">`
+    stickers.forEach(s => { html += `<span class="cmp-chip">${s.code}</span>` })
+    html += `</div>`
+  })
+  resultEl.innerHTML = html
+}
+
 // ── Nav grupos ────────────────────────────────────────────────────────────────
 function buildGroupNav() {
   const nav = document.getElementById('group-nav')
@@ -279,4 +490,46 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-reset').addEventListener('click', resetAlbum)
   document.getElementById('btn-share').addEventListener('click', shareAlbum)
   document.getElementById('btn-specials').addEventListener('click', openSpecials)
+
+  // Estadísticas
+  document.getElementById('btn-stats').addEventListener('click', openStats)
+  document.getElementById('modal-stats-close').addEventListener('click', closeStats)
+  document.getElementById('modal-stats').addEventListener('click', e => {
+    if (e.target === document.getElementById('modal-stats')) closeStats()
+  })
+
+  // Repetidas
+  document.getElementById('btn-repeated').addEventListener('click', openRepeated)
+  document.getElementById('modal-rep-close').addEventListener('click', closeRepeated)
+  document.getElementById('modal-rep').addEventListener('click', e => {
+    if (e.target === document.getElementById('modal-rep')) closeRepeated()
+  })
+  document.getElementById('btn-copy-rep').addEventListener('click', () => {
+    navigator.clipboard.writeText(buildRepList())
+      .then(() => alert('✅ Lista de repetidas copiada'))
+      .catch(() => alert('No se pudo copiar.'))
+  })
+
+  // Comparar
+  document.getElementById('btn-compare').addEventListener('click', openCompare)
+  document.getElementById('modal-cmp-close').addEventListener('click', closeCompare)
+  document.getElementById('modal-cmp').addEventListener('click', e => {
+    if (e.target === document.getElementById('modal-cmp')) closeCompare()
+  })
+  document.querySelectorAll('.modal-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.modal-tab').forEach(t=>t.classList.remove('active'))
+      document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'))
+      tab.classList.add('active')
+      document.getElementById('tab-'+tab.dataset.tab).classList.add('active')
+    })
+  })
+  document.getElementById('btn-copy-code').addEventListener('click', () => {
+    const code = document.getElementById('my-code-box').textContent
+    navigator.clipboard.writeText(code)
+      .then(() => alert('✅ Código copiado'))
+      .catch(() => alert('No se pudo copiar.'))
+  })
+  document.getElementById('btn-regen-code').addEventListener('click', renderMyCode)
+  document.getElementById('btn-compare-run').addEventListener('click', runCompare)
 })

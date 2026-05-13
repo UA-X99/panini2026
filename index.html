@@ -71,6 +71,13 @@
         <button class="btn-outline full" id="btn-specials">Ver especiales</button>
       </div>
 
+      <!-- Estadísticas y Repetidas -->
+      <div class="card" style="display:flex;flex-direction:column;gap:.5rem">
+        <button class="btn-outline full" id="btn-stats">📊 Estadísticas detalladas</button>
+        <button class="btn-outline full" id="btn-repeated">🔄 Mis repetidas</button>
+        <button class="btn-outline full" id="btn-compare">👥 Comparar con amigos</button>
+      </div>
+
       <!-- Reset -->
       <button class="btn-reset" id="btn-reset">↺ Resetear álbum</button>
     </aside>
@@ -143,5 +150,75 @@
 
   <script src="data/stickers.js"></script>
   <script src="app.js"></script>
+
+  <!-- ── Modal estadísticas ────────────────────────── -->
+  <div class="modal hidden" id="modal-stats">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div><h2>📊 Estadísticas del álbum</h2></div>
+        <button class="close-btn" id="modal-stats-close">✕</button>
+      </div>
+      <div style="overflow-y:auto;padding:1rem 1.25rem">
+        <div class="stats-summary" id="ss-boxes"></div>
+        <table class="stats-table">
+          <thead><tr>
+            <th>Selección</th><th>Grupo</th><th>Progreso</th><th>Répetidas</th>
+          </tr></thead>
+          <tbody id="stats-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Modal repetidas ───────────────────────────── -->
+  <div class="modal hidden" id="modal-rep">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <h2>🔄 Mis repetidas</h2>
+          <p class="modal-sub" id="rep-total-text"></p>
+        </div>
+        <div style="display:flex;gap:.5rem;align-items:center">
+          <button class="btn-outline" id="btn-copy-rep" style="white-space:nowrap;font-size:.72rem">📋 Copiar lista</button>
+          <button class="close-btn" id="modal-rep-close">✕</button>
+        </div>
+      </div>
+      <div style="overflow-y:auto;padding:1rem 1.25rem" id="rep-content"></div>
+    </div>
+  </div>
+
+  <!-- ── Modal comparar ────────────────────────────── -->
+  <div class="modal hidden" id="modal-cmp">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div><h2>👥 Comparar con amigos</h2></div>
+        <button class="close-btn" id="modal-cmp-close">✕</button>
+      </div>
+      <div style="overflow-y:auto;padding:1rem 1.25rem">
+        <div class="modal-tabs">
+          <button class="modal-tab active" data-tab="export">📤 Mi código</button>
+          <button class="modal-tab" data-tab="import">📥 Código de amigo</button>
+        </div>
+        <div class="tab-panel active" id="tab-export">
+          <p style="font-size:.78rem;color:var(--muted);margin-bottom:.4rem">
+            Comparte este código con tu amigo para que vea qué láminas tuyas le faltan:
+          </p>
+          <div class="code-box" id="my-code-box"></div>
+          <div class="modal-actions-row">
+            <button class="btn-outline" id="btn-copy-code">📋 Copiar código</button>
+            <button class="btn-yellow" id="btn-regen-code">🔄 Regenerar</button>
+          </div>
+        </div>
+        <div class="tab-panel" id="tab-import">
+          <p style="font-size:.78rem;color:var(--muted);margin-bottom:.4rem">
+            Pega el código de tu amigo para ver qué repetidas tuyas necesita:
+          </p>
+          <input class="import-input" id="friend-code-input" placeholder="Pega el código de tu amigo aquí..." />
+          <button class="btn-yellow" id="btn-compare-run" style="width:100%;margin-top:.4rem">🔍 Comparar</button>
+          <div class="compare-result hidden" id="compare-result"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

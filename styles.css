@@ -143,3 +143,66 @@ body{font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var
 .st-state{font-size:.65rem;font-weight:600;color:#60a5fa}
 .sticker.got .st-state{color:#4ade80}
 .sticker.rep .st-state{color:#fb923c}
+
+/* ── Animación stamp ──────────────────────────────────── */
+@keyframes stamp {
+  0%   { transform:scale(1.35) rotate(-6deg); opacity:.6; }
+  55%  { transform:scale(.93)  rotate(2deg);  opacity:1; }
+  100% { transform:scale(1)    rotate(0deg);  opacity:1; }
+}
+@keyframes stamp-rep {
+  0%   { transform:scale(1.35) rotate(6deg);  opacity:.6; }
+  55%  { transform:scale(.93)  rotate(-2deg); opacity:1; }
+  100% { transform:scale(1)    rotate(0deg);  opacity:1; }
+}
+.sticker.stamp-got { animation:stamp     .32s cubic-bezier(.22,.61,.36,1) both; }
+.sticker.stamp-rep { animation:stamp-rep .32s cubic-bezier(.22,.61,.36,1) both; }
+
+/* ── Badge repetidas en country card ─────────────────── */
+.rep-badge{display:inline-flex;align-items:center;gap:.2rem;font-size:.62rem;font-weight:700;
+  color:#fb923c;background:rgba(194,65,12,.18);border-radius:99px;padding:.1rem .38rem;margin-left:.3rem}
+
+/* ── Modal estadísticas ───────────────────────────────── */
+.stats-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:1rem}
+.ss-box{background:var(--bg3);border-radius:8px;padding:.7rem;text-align:center}
+.ss-box strong{display:block;font-size:1.5rem;font-weight:900;color:var(--yellow)}
+.ss-box small{font-size:.68rem;color:var(--muted)}
+.stats-table{width:100%;border-collapse:collapse;font-size:.8rem}
+.stats-table th{text-align:left;color:var(--muted);font-size:.67rem;letter-spacing:.06em;
+  padding:.4rem .5rem;border-bottom:1px solid var(--border)}
+.stats-table td{padding:.4rem .5rem;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
+.stats-table tr:hover td{background:var(--bg3)}
+.mini-bar-wrap{background:var(--bg4);border-radius:99px;height:5px;width:80px;overflow:hidden;
+  display:inline-block;vertical-align:middle;margin-left:.4rem}
+.mini-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--yellow2),var(--yellow))}
+.pct-cell{color:var(--yellow);font-weight:700}
+.complete-row td{color:#4ade80}
+
+/* ── Modal repetidas ─────────────────────────────────── */
+.rep-country-block{margin-bottom:1rem}
+.rep-country-title{font-size:.83rem;font-weight:700;margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}
+.rep-sticker-list{display:flex;flex-wrap:wrap;gap:.35rem}
+.rep-chip{background:rgba(194,65,12,.2);border:1px solid rgba(194,65,12,.45);color:#fb923c;
+  border-radius:6px;padding:.22rem .52rem;font-size:.72rem;font-weight:600}
+.rep-empty{color:var(--muted);font-size:.82rem;padding:1rem 0}
+
+/* ── Comparar / Compartir modal ───────────────────────── */
+.modal-tabs{display:flex;gap:.4rem;margin-bottom:1rem}
+.modal-tab{flex:1;padding:.4rem;border-radius:6px;border:1px solid var(--border);
+  background:transparent;color:var(--muted);font-size:.78rem;cursor:pointer;transition:all .15s}
+.modal-tab.active{background:var(--yellow);color:#000;border-color:var(--yellow);font-weight:700}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.code-box{background:var(--bg4);border:1px solid var(--border);border-radius:6px;padding:.5rem .7rem;
+  font-size:.68rem;color:var(--muted);word-break:break-all;max-height:72px;overflow-y:auto;font-family:monospace;margin:.4rem 0}
+.import-input{width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:6px;
+  color:var(--fg);padding:.45rem .7rem;font-size:.78rem;font-family:monospace;margin:.4rem 0}
+.import-input::placeholder{color:var(--muted)}
+.compare-result{margin-top:.75rem}
+.compare-result h4{font-size:.82rem;font-weight:700;margin-bottom:.5rem;color:var(--yellow)}
+.compare-chips{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.5rem}
+.cmp-chip{background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.35);color:#4ade80;
+  border-radius:6px;padding:.22rem .52rem;font-size:.72rem;font-weight:600}
+.compare-empty{color:var(--muted);font-size:.82rem}
+.modal-actions-row{display:flex;gap:.5rem;margin-top:.6rem}
+.modal-actions-row .btn-outline,.modal-actions-row .btn-yellow{flex:1}
