@@ -7,7 +7,10 @@ function save() { try { localStorage.setItem(LS_KEY, JSON.stringify(state)) } ca
 
 function getS(n)   { return state[String(n)] || 0 }
 function setS(n,v) { if (v===0) delete state[String(n)]; else state[String(n)] = v; save() }
-function cycleS(n) { const v = (getS(n)+1)%3; setS(n,v); return v }
+// Click izquierdo = incrementa (0→1→2→3...→20→0)
+// Click derecho / doble clic = resetea a 0
+function cycleS(n) { const v = getS(n); const nv = v >= 20 ? 0 : v + 1; setS(n,nv); return nv }
+function resetS(n) { setS(n,0); return 0 }
 
 // ── Filtros ───────────────────────────────────────────────────────────────────
 let activeGroup  = 'ALL'
@@ -38,7 +41,11 @@ function renderSummary() {
   const specials = [...ALBUM.intro, ...ALBUM.history, ...ALBUM.cocacola]
   const everything = [...all, ...specials]
   let got = 0, rep = 0
-  everything.forEach(s => { const v=getS(s.num); if(v===1) got++; else if(v===2) rep++ })
+  everything.forEach(s => {
+    const v = getS(s.num)
+    if (v >= 1) got++
+    if (v >= 2) rep += (v - 1)   // repetidas = copias extra
+  })
   const total   = ALBUM.total
   const missing = total - got
   const pct     = (got/total*100).toFixed(1)
@@ -77,7 +84,7 @@ function renderGrid() {
 
   countries.forEach(c => {
     const got   = c.stickers.filter(s => getS(s.num) >= 1).length
-    const rep   = c.stickers.filter(s => getS(s.num) === 2).length
+    const rep   = c.stickers.reduce((acc,s) => acc + Math.max(0, getS(s.num)-1), 0)
     const total = c.stickers.length
     const pct   = Math.round(got/total*100)
 
@@ -121,10 +128,10 @@ function openModal(country) {
   mgrid.innerHTML = ''
 
   function refreshCounter() {
-    const g = country.stickers.filter(s => getS(s.num) >= 1).length
-    const r = country.stickers.filter(s => getS(s.num) === 2).length
+    const g   = country.stickers.filter(s => getS(s.num) >= 1).length
+    const rep = country.stickers.reduce((acc,s) => acc + Math.max(0, getS(s.num)-1), 0)
     document.getElementById('modal-counter').textContent =
-      `${g}/${country.stickers.length}` + (r > 0 ? `  ·  ↻ ${r} repetida${r>1?'s':''}` : '')
+      `${g}/${country.stickers.length}` + (rep > 0 ? `  ·  ↻ ${rep} repetida${rep>1?'s':''}` : '')
   }
 
   country.stickers.forEach(s => {
@@ -135,6 +142,13 @@ function openModal(country) {
       const newVal = cycleS(s.num)
       refreshSticker(el,s)
       animateSticker(el, newVal)
+      refreshCounter()
+      renderAll()
+    })
+    el.addEventListener('contextmenu', e => {
+      e.preventDefault()
+      resetS(s.num)
+      refreshSticker(el,s)
       refreshCounter()
       renderAll()
     })
@@ -163,6 +177,12 @@ function openSpecials() {
       animateSticker(el, newVal)
       renderSummary()
     })
+    el.addEventListener('contextmenu', e => {
+      e.preventDefault()
+      resetS(s.num)
+      refreshSticker(el,s)
+      renderSummary()
+    })
     mgrid.appendChild(el)
   })
 
@@ -172,22 +192,27 @@ function openSpecials() {
 
 function refreshSticker(el, s) {
   const v = getS(s.num)
-  el.className = 'sticker' + (v===1?' got':v===2?' rep':'')
+  const cls = v === 0 ? '' : v === 1 ? ' got' : ' rep'
+  el.className = 'sticker' + cls
   const icon = s.type==='badge'?'⭐':s.type==='team'?'📸':s.type==='history'?'🏅':'👤'
+  const repBadge = v >= 2
+    ? `<div class="st-rep-badge">×${v}</div>` : ''
+  const stateLabel = v === 0 ? '○ Falta' : v === 1 ? '✓ Tengo' : `＋${v-1} extra${v-1>1?'s':''}`
   el.innerHTML = `
+    ${repBadge}
     <div class="st-num">${s.num}</div>
     <div class="st-code">${s.code}</div>
     <div class="st-icon">${icon}</div>
     <div class="st-label">${s.label}</div>
-    <div class="st-state">${v===1?'✓ Tengo':v===2?'＋ Repetida':'○ Falta'}</div>
+    <div class="st-state">${stateLabel}</div>
   `
 }
 
 function animateSticker(el, newVal) {
   el.classList.remove('stamp-got','stamp-rep')
-  void el.offsetWidth // reflow para reiniciar anim
-  if (newVal===1) el.classList.add('stamp-got')
-  else if (newVal===2) el.classList.add('stamp-rep')
+  void el.offsetWidth
+  if (newVal === 1) el.classList.add('stamp-got')
+  else if (newVal >= 2) el.classList.add('stamp-rep')
 }
 
 function closeModal() {
@@ -252,7 +277,7 @@ function openStats() {
   // Summary boxes
   const allSt = ALBUM.countries.flatMap(c => c.stickers)
   const gotTotal = allSt.filter(s => getS(s.num) >= 1).length
-  const repTotal = allSt.filter(s => getS(s.num) === 2).length
+  const repTotal = allSt.reduce((acc,s) => acc + Math.max(0, getS(s.num)-1), 0)
   const complete = ALBUM.countries.filter(c =>
     c.stickers.every(s => getS(s.num) >= 1)
   ).length
@@ -273,7 +298,7 @@ function openStats() {
   })
   sorted.forEach(c => {
     const got = c.stickers.filter(s=>getS(s.num)>=1).length
-    const rep = c.stickers.filter(s=>getS(s.num)===2).length
+    const rep = c.stickers.reduce((acc,s) => acc + Math.max(0, getS(s.num)-1), 0)
     const pct = Math.round(got/c.stickers.length*100)
     const tr = document.createElement('tr')
     if (got === c.stickers.length) tr.className = 'complete-row'
@@ -308,33 +333,35 @@ function openRepeated() {
   let totalRep = 0
 
   ALBUM.countries.forEach(c => {
-    const reps = c.stickers.filter(s => getS(s.num) === 2)
+    const reps = c.stickers.filter(s => getS(s.num) >= 2)
     if (!reps.length) return
-    totalRep += reps.length
+    totalRep += reps.reduce((acc,s) => acc + getS(s.num) - 1, 0)
     const block = document.createElement('div')
     block.className = 'rep-country-block'
+    const totalCountry = reps.reduce((acc,s) => acc + getS(s.num)-1, 0)
     block.innerHTML = `
       <div class="rep-country-title">
         ${c.flag} ${c.name}
-        <span class="rep-badge">↻ ${reps.length}</span>
+        <span class="rep-badge">↻ ${totalCountry}</span>
       </div>
       <div class="rep-sticker-list">
-        ${reps.map(s=>`<span class="rep-chip">${s.code} · ${s.label}</span>`).join('')}
+        ${reps.map(s=>`<span class="rep-chip">${s.code} <strong>×${getS(s.num)}</strong></span>`).join('')}
       </div>
     `
     content.appendChild(block)
   })
 
   // Especiales repetidas
-  const specReps = [...ALBUM.intro,...ALBUM.history,...ALBUM.cocacola].filter(s=>getS(s.num)===2)
+  const specReps = [...ALBUM.intro,...ALBUM.history,...ALBUM.cocacola].filter(s=>getS(s.num)>=2)
   if (specReps.length) {
-    totalRep += specReps.length
+    const specTotal = specReps.reduce((acc,s) => acc + getS(s.num)-1, 0)
+    totalRep += specTotal
     const block = document.createElement('div')
     block.className = 'rep-country-block'
     block.innerHTML = `
-      <div class="rep-country-title">⭐ Especiales <span class="rep-badge">↻ ${specReps.length}</span></div>
+      <div class="rep-country-title">⭐ Especiales <span class="rep-badge">↻ ${specTotal}</span></div>
       <div class="rep-sticker-list">
-        ${specReps.map(s=>`<span class="rep-chip">${s.code} · ${s.label}</span>`).join('')}
+        ${specReps.map(s=>`<span class="rep-chip">${s.code} <strong>×${getS(s.num)}</strong></span>`).join('')}
       </div>
     `
     content.appendChild(block)
