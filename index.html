@@ -1,30 +1,5 @@
-<!DOCTYPE h  <!-- ── Logo FIFA 2026 ────────────────────────────── -->
-  <nav class="navbar">
-    <div class="navbar-brand">
-      <div class="brand-logo">
-        <div class="brand-logo-bg">
-          <span class="brand-26-left">2</span>
-          <span class="brand-26-right">6</span>
-          <span class="brand-trophy">🏆</span>
-          <span class="brand-fifa-label">FIFA</span>
-        </div>
-      </div>
-      <div>
-        <div class="brand-title">FIFA WORLD CUP 2026™</div>
-        <div class="brand-sub">MI ÁLBUM PANINI OFICIAL</div>
-      </div>
-    </div>
-    <div class="navbar-links">
-      <button class="nav-link active">📖 Álbum</button>
-    </div>
-    <button class="btn-share" id="btn-share">↗ Compartir</button>
-  </nav>
-
-  <!-- ── Banner rainbow FIFA ────────────────────────── -->
-  <div class="rainbow-hero">
-    <span class="rh-flags">🇺🇸 🇨🇦 🇲🇽</span>
-    <span class="rh-text">⚽ FIFA WORLD CUP 2026™ · 48 SELECCIONES · 3 PAÍSES SEDE · USA · CANADA · MEXICO ⚽</span>
-  </div>es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,12 +13,16 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <div class="brand-logo">
-        <span class="brand-26">26</span>
-        <span class="brand-trophy">🏆</span>
+        <div class="brand-logo-bg">
+          <span class="brand-26-left">2</span>
+          <span class="brand-26-right">6</span>
+          <span class="brand-trophy">🏆</span>
+          <span class="brand-fifa-label">FIFA</span>
+        </div>
       </div>
       <div>
-        <div class="brand-title">FIFA WORLD CUP</div>
-        <div class="brand-sub">MI ÁLBUM PANINI 2026™</div>
+        <div class="brand-title">FIFA WORLD CUP 2026™</div>
+        <div class="brand-sub">MI ÁLBUM PANINI OFICIAL</div>
       </div>
     </div>
     <div class="navbar-links">
@@ -76,18 +55,16 @@
         <div class="big-pct"><span id="pct-num">0</span>%</div>
         <div class="pct-label">completado</div>
         <div class="prog-global"><div id="prog-bar" style="width:0%"></div></div>
-
         <div class="stats-row">
           <div class="stat got"><span class="stat-icon">✓</span><strong id="cnt-got">0</strong><small>Tengo</small></div>
           <div class="stat miss"><strong id="cnt-miss">0</strong><small>Faltan</small></div>
           <div class="stat rep"><span class="stat-icon">↻</span><strong id="cnt-rep">0</strong><small>Extras</small></div>
         </div>
-        <div class="stats-note">980 stickers totales en el álbum</div>
-        <div class="stats-note" style="margin-bottom:.75rem">Lista de <span id="cnt-miss2">0</span> stickers faltantes:</div>
-
+        <div class="stats-note">994 stickers totales en el álbum</div>
+        <div class="stats-note" style="margin-bottom:.75rem">Lista de <span id="cnt-miss2">0</span> faltantes:</div>
         <div class="actions-col">
           <button class="btn-outline" id="btn-copy">📋 Copiar lista</button>
-          <button class="btn-yellow" id="btn-dl">⬇ Descargar TXT</button>
+          <button class="btn-accent" id="btn-dl">⬇ Descargar TXT</button>
         </div>
       </div>
 
@@ -100,11 +77,14 @@
         <button class="btn-outline full" id="btn-specials">Ver especiales</button>
       </div>
 
-      <!-- Estadísticas y Repetidas -->
-      <div class="card" style="display:flex;flex-direction:column;gap:.5rem">
-        <button class="btn-outline full" id="btn-stats">📊 Estadísticas detalladas</button>
-        <button class="btn-outline full" id="btn-repeated">🔄 Mis repetidas</button>
-        <button class="btn-outline full" id="btn-compare">👥 Comparar con amigos</button>
+      <!-- Herramientas -->
+      <div class="card tools-card">
+        <div class="card-label">🛠 HERRAMIENTAS</div>
+        <div class="tools-list">
+          <button class="tool-btn" id="btn-stats">📊 Estadísticas</button>
+          <button class="tool-btn" id="btn-repeated">�� Mis repetidas</button>
+          <button class="tool-btn" id="btn-compare">👥 Comparar con amigos</button>
+        </div>
       </div>
 
       <!-- Reset -->
@@ -113,8 +93,13 @@
 
     <!-- ── Contenido principal ───────────────────────── -->
     <main class="main-content">
-      <h1 class="album-title"><span>ÁLBUM PANINI</span></h1>
-      <p class="album-sub">FIFA World Cup 2026™ · 48 selecciones · 994 stickers</p>
+
+      <div class="main-header">
+        <div>
+          <h1 class="album-title">ÁLBUM <span class="title-accent">PANINI</span></h1>
+          <p class="album-sub">FIFA World Cup 2026™ &nbsp;·&nbsp; 48 selecciones &nbsp;·&nbsp; 994 stickers</p>
+        </div>
+      </div>
 
       <!-- Filtros -->
       <div class="filters">
@@ -124,9 +109,9 @@
         </div>
         <div class="filter-status" id="filter-status">
           <button class="fs-btn active" data-status="ALL">Todos</button>
-          <button class="fs-btn" data-status="progress">▶ En progreso</button>
+          <button class="fs-btn" data-status="progress">En progreso</button>
           <button class="fs-btn" data-status="complete">✓ Completos</button>
-          <button class="fs-btn" data-status="empty">○ Sin empezar</button>
+          <button class="fs-btn" data-status="empty">Sin empezar</button>
         </div>
         <select class="filter-conf" id="filter-conf">
           <option value="ALL">Todas las conf.</option>
@@ -160,7 +145,7 @@
           <button class="close-btn" id="modal-close">✕</button>
         </div>
       </div>
-      <p class="hint">🖱 Clic = agregar copia · Clic derecho = resetear a 0 · El número en la esquina indica cuántas tienes</p>
+      <p class="hint">🖱 Clic = agregar copia &nbsp;·&nbsp; Clic derecho = resetear &nbsp;·&nbsp; Número en esquina = copias</p>
       <div id="modal-grid" class="modal-grid"></div>
     </div>
   </div>
@@ -172,13 +157,10 @@
         <div><h2>⭐ Stickers Especiales</h2></div>
         <button class="close-btn" id="modal-spec-close">✕</button>
       </div>
-      <p class="hint">🖱 Clic = agregar copia · Clic derecho = resetear · Número en esquina = copias totales</p>
+      <p class="hint">Intro (00, FWC 1–8) · Historia (FWC 9–19) · Coca-Cola (CC 1–14)</p>
       <div id="modal-spec-grid" class="modal-grid"></div>
     </div>
   </div>
-
-  <script src="data/stickers.js"></script>
-  <script src="app.js"></script>
 
   <!-- ── Modal estadísticas ────────────────────────── -->
   <div class="modal hidden" id="modal-stats">
@@ -191,7 +173,7 @@
         <div class="stats-summary" id="ss-boxes"></div>
         <table class="stats-table">
           <thead><tr>
-            <th>Selección</th><th>Grupo</th><th>Progreso</th><th>Répetidas</th>
+            <th>Selección</th><th>Grupo</th><th>Progreso</th><th>Repetidas</th>
           </tr></thead>
           <tbody id="stats-tbody"></tbody>
         </table>
@@ -208,7 +190,7 @@
           <p class="modal-sub" id="rep-total-text"></p>
         </div>
         <div style="display:flex;gap:.5rem;align-items:center">
-          <button class="btn-outline" id="btn-copy-rep" style="white-space:nowrap;font-size:.72rem">📋 Copiar lista</button>
+          <button class="btn-outline" id="btn-copy-rep" style="font-size:.72rem">📋 Copiar</button>
           <button class="close-btn" id="modal-rep-close">✕</button>
         </div>
       </div>
@@ -229,25 +211,24 @@
           <button class="modal-tab" data-tab="import">📥 Código de amigo</button>
         </div>
         <div class="tab-panel active" id="tab-export">
-          <p style="font-size:.78rem;color:var(--muted);margin-bottom:.4rem">
-            Comparte este código con tu amigo para que vea qué láminas tuyas le faltan:
-          </p>
+          <p style="font-size:.78rem;color:var(--muted);margin-bottom:.4rem">Comparte este código con tu amigo:</p>
           <div class="code-box" id="my-code-box"></div>
           <div class="modal-actions-row">
             <button class="btn-outline" id="btn-copy-code">📋 Copiar código</button>
-            <button class="btn-yellow" id="btn-regen-code">🔄 Regenerar</button>
+            <button class="btn-accent" id="btn-regen-code">🔄 Regenerar</button>
           </div>
         </div>
         <div class="tab-panel" id="tab-import">
-          <p style="font-size:.78rem;color:var(--muted);margin-bottom:.4rem">
-            Pega el código de tu amigo para ver qué repetidas tuyas necesita:
-          </p>
-          <input class="import-input" id="friend-code-input" placeholder="Pega el código de tu amigo aquí..." />
-          <button class="btn-yellow" id="btn-compare-run" style="width:100%;margin-top:.4rem">🔍 Comparar</button>
+          <p style="font-size:.78rem;color:var(--muted);margin-bottom:.4rem">Pega el código de tu amigo:</p>
+          <input class="import-input" id="friend-code-input" placeholder="Pega el código aquí..." />
+          <button class="btn-accent" id="btn-compare-run" style="width:100%;margin-top:.4rem;padding:.5rem">🔍 Comparar</button>
           <div class="compare-result hidden" id="compare-result"></div>
         </div>
       </div>
     </div>
   </div>
+
+  <script src="data/stickers.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
