@@ -335,8 +335,8 @@ body{
 /* ══ GRID PAÍSES ══════════════════════════════════════════ */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(158px,1fr));
-  gap:.9rem;
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  gap:1.1rem;
 }
 
 /* ══ COUNTRY CARD ════════════════════════════════════════ */
@@ -362,19 +362,19 @@ body{
 .country-card:hover .card-stripe{background:linear-gradient(90deg,var(--red),var(--gold))}
 .country-card.complete .card-stripe{background:var(--green)}
 
-.card-body{padding:.8rem .9rem .5rem}
+.card-body{padding:1.1rem 1.1rem .6rem}
 
-.card-flag{font-size:2.2rem;line-height:1;display:block;margin-bottom:.4rem}
+.card-flag{font-size:3rem;line-height:1;display:block;margin-bottom:.55rem}
 
 .card-name{
-  font-family:var(--fh);font-size:.88rem;font-weight:700;
-  letter-spacing:.04em;color:var(--white);line-height:1.2;margin-bottom:.1rem;
+  font-family:var(--fh);font-size:1.1rem;font-weight:700;
+  letter-spacing:.04em;color:var(--white);line-height:1.2;margin-bottom:.15rem;
 }
-.card-conf{font-size:.56rem;color:var(--t3);letter-spacing:.1em;text-transform:uppercase}
+.card-conf{font-size:.65rem;color:var(--t3);letter-spacing:.1em;text-transform:uppercase}
 
-.card-prog-wrap{padding:.3rem .9rem .65rem}
+.card-prog-wrap{padding:.35rem 1.1rem .75rem}
 .card-prog-bar{
-  height:3px;background:var(--surface3);
+  height:4px;background:var(--surface3);
   border-radius:99px;overflow:hidden;margin-bottom:.3rem;
 }
 .card-prog-fill{
@@ -386,7 +386,7 @@ body{
 
 .card-prog-label{
   display:flex;justify-content:space-between;
-  font-size:.56rem;color:var(--t3);
+  font-size:.65rem;color:var(--t3);
 }
 .card-prog-label strong{color:var(--gold2);font-weight:600}
 .country-card.complete .card-prog-label strong{color:var(--green)}
@@ -647,6 +647,6 @@ body{
   .brand-title{font-size:.9rem}
   .brand-sub{display:none}
   .album-title{font-size:1.9rem}
-  .grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.7rem}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:.8rem}
   .modal-grid{grid-template-columns:repeat(auto-fill,minmax(76px,1fr))}
 }
