@@ -270,6 +270,50 @@ function resetAlbum() {
   state = {}; save(); renderAll(); closeModal(); closeSpecials()
 }
 
+// ── Set de Actualización ──────────────────────────────────
+function openUpdateSet() {
+  const modal   = document.getElementById('modal-update')
+  const content = document.getElementById('update-content')
+  content.innerHTML = ''
+
+  // Agrupar por país
+  const byCountry = {}
+  ALBUM.updateSet.forEach(p => {
+    if (!byCountry[p.country]) byCountry[p.country] = []
+    byCountry[p.country].push(p)
+  })
+
+  Object.entries(byCountry).sort((a,b)=>a[0].localeCompare(b[0],'es')).forEach(([country, players]) => {
+    const block = document.createElement('div')
+    block.className = 'rep-country-block'
+
+    const flag = ALBUM.countries.find(c => c.name === country)?.flag || '🏳'
+    block.innerHTML = `
+      <div class="rep-country-title">
+        ${flag} ${country}
+        <span class="rep-badge" style="background:#1e3a8a;color:#93c5fd">${players.length}</span>
+      </div>
+      <div class="update-player-list">
+        ${players.map(p => `
+          <div class="update-chip">
+            <span class="update-player-name">👤 ${p.name}</span>
+            <span class="update-replaces">${p.reemplaza_a ? `↔ Reemplaza: <strong>${p.reemplaza_a}</strong>` : '<em style="color:#64748b">Nº pendiente</em>'}</span>
+          </div>
+        `).join('')}
+      </div>
+    `
+    content.appendChild(block)
+  })
+
+  modal.classList.remove('hidden')
+  document.body.style.overflow = 'hidden'
+}
+
+function closeUpdateSet() {
+  document.getElementById('modal-update').classList.add('hidden')
+  document.body.style.overflow = ''
+}
+
 // ── Estadísticas ─────────────────────────────────────────
 function openStats() {
   const modal = document.getElementById('modal-stats')
@@ -559,4 +603,11 @@ document.addEventListener('DOMContentLoaded', () => {
   })
   document.getElementById('btn-regen-code').addEventListener('click', renderMyCode)
   document.getElementById('btn-compare-run').addEventListener('click', runCompare)
+
+  // Set de Actualización
+  document.getElementById('btn-update-set').addEventListener('click', openUpdateSet)
+  document.getElementById('modal-update-close').addEventListener('click', closeUpdateSet)
+  document.getElementById('modal-update').addEventListener('click', e => {
+    if (e.target === document.getElementById('modal-update')) closeUpdateSet()
+  })
 })

@@ -238,3 +238,10 @@ body{font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var
 .compare-empty{color:var(--muted);font-size:.82rem}
 .modal-actions-row{display:flex;gap:.5rem;margin-top:.6rem}
 .modal-actions-row .btn-outline,.modal-actions-row .btn-yellow{flex:1}
+
+/* ── Set de Actualización ─────────────────────────────── */
+.update-notice{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.3);border-radius:8px;padding:.7rem .9rem;font-size:.75rem;color:#cbd5e1;line-height:1.5;margin-bottom:1.1rem}
+.update-player-list{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.25rem}
+.update-chip{display:flex;align-items:center;justify-content:space-between;background:rgba(30,58,138,.25);border:1px solid rgba(59,130,246,.2);border-radius:7px;padding:.32rem .65rem;gap:.5rem}
+.update-player-name{font-size:.76rem;font-weight:600;color:#e2e8f0}
+.update-replaces{font-size:.7rem;color:#94a3b8;white-space:nowrap}

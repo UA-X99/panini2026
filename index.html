@@ -82,6 +82,16 @@
         <button class="btn-outline full" id="btn-compare">👥 Comparar con amigos</button>
       </div>
 
+      <!-- Set de Actualización -->
+      <div class="card" style="background:linear-gradient(135deg,#1e3a5f 0%,#0f2540 100%);border:1px solid #facc15">
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem">
+          <span style="font-size:1.1rem">🔄</span>
+          <span style="font-weight:700;color:#facc15;font-size:.82rem;letter-spacing:.05em">SET DE ACTUALIZACIÓN</span>
+        </div>
+        <p style="font-size:.72rem;color:#94a3b8;margin-bottom:.6rem;line-height:1.4">118 láminas exclusivas · Pendiente de numeración oficial de Panini</p>
+        <button class="btn-yellow full" id="btn-update-set">📋 Ver jugadores del update set</button>
+      </div>
+
       <!-- Reset -->
       <button class="btn-reset" id="btn-reset">↺ Resetear álbum</button>
     </aside>
@@ -89,7 +99,7 @@
     <!-- ── Contenido principal ───────────────────────── -->
     <main class="main-content">
       <h1 class="album-title">ÁLBUM PANINI</h1>
-      <p class="album-sub">FIFA World Cup 2026™ · 48 selecciones · 980 stickers</p>
+      <p class="album-sub">FIFA World Cup 2026™ · 48 selecciones · 992 láminas</p>
 
       <!-- Filtros -->
       <div class="filters">
@@ -224,5 +234,24 @@
       </div>
     </div>
   </div>
+  <!-- ── Modal Set de Actualización ───────────────────── -->
+  <div class="modal hidden" id="modal-update">
+    <div class="modal-inner" style="max-width:680px">
+      <div class="modal-head">
+        <div>
+          <h2>🔄 Set de Actualización</h2>
+          <p class="modal-sub">118 láminas exclusivas · Números pendientes de asignación oficial de Panini</p>
+        </div>
+        <button class="close-btn" id="modal-update-close">✕</button>
+      </div>
+      <div style="overflow-y:auto;padding:1rem 1.25rem">
+        <div class="update-notice">
+          ⚠️ Panini aún no ha confirmado qué láminas del álbum base serán reemplazadas (se conocen 6 de México). El campo <strong>"Reemplaza a"</strong> se irá completando cuando salga la lista oficial.
+        </div>
+        <div id="update-content"></div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
