@@ -296,8 +296,11 @@ function openUpdateSet() {
       <div class="update-player-list">
         ${players.map(p => `
           <div class="update-chip">
-            <span class="update-player-name">👤 ${p.name}</span>
-            <span class="update-replaces">${p.reemplaza_a ? `↔ Reemplaza: <strong>${p.reemplaza_a}</strong>` : '<em style="color:#64748b">Nº pendiente</em>'}</span>
+            <span class="update-player-name">👤 ${p.label}</span>
+            <span class="update-replaces">${p.replaces
+              ? `↔ ${p.former} · <strong>${p.replaces.code}</strong>`
+              : `↔ ${p.former} · <em style="color:#64748b">Nº pendiente</em>`
+            }</span>
           </div>
         `).join('')}
       </div>
