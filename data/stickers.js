@@ -119,29 +119,29 @@
   // ── Generar numeración correcta ──────────────────────────────────────────
   // Estructura: 00(0) + FWC1-8(1-8) + 48×20(9-968) + FWC9-19(969-979) + CC1-12(980-991)
   const INTRO = [
-    { num:0,   code:'00',     type:'special', label:'Portada Oficial — FIFA World Cup 2026™',   special:true },
-    { num:1,   code:'FWC 1',  type:'special', label:'Bienvenida al Mundial 2026',                special:true },
-    { num:2,   code:'FWC 2',  type:'special', label:'Logo Oficial y Mascota "Striker"',          special:true },
-    { num:3,   code:'FWC 3',  type:'special', label:'Trofeo Copa del Mundo FIFA™',               special:true },
-    { num:4,   code:'FWC 4',  type:'stadium', label:'MetLife Stadium — East Rutherford (Final)', special:false },
-    { num:5,   code:'FWC 5',  type:'stadium', label:'Estadio Azteca — Ciudad de México',         special:false },
-    { num:6,   code:'FWC 6',  type:'stadium', label:'Rose Bowl — Los Ángeles',                   special:false },
-    { num:7,   code:'FWC 7',  type:'stadium', label:'AT&T Stadium — Dallas/Arlington',           special:false },
-    { num:8,   code:'FWC 8',  type:'stadium', label:'Hard Rock Stadium — Miami',                 special:false },
+    { num:0,   code:'00',     type:'special', label:'PANINI',   special:true },
+    { num:1,   code:'FWC 1',  type:'special', label:'Copa del Mundo 2026 1',                special:true },
+    { num:2,   code:'FWC 2',  type:'special', label:'Copa del Mundo 2026 2"',          special:true },
+    { num:3,   code:'FWC 3',  type:'special', label:'Mascotas Oficiales FIFA™',               special:true },
+    { num:4,   code:'FWC 4',  type:'stadium', label:'Logo Oficial 2026)', special:false },
+    { num:5,   code:'FWC 5',  type:'stadium', label:'Balon Oficial TRIONDA',         special:false },
+    { num:6,   code:'FWC 6',  type:'stadium', label:'Anfitrion CANADA',                   special:false },
+    { num:7,   code:'FWC 7',  type:'stadium', label:'Anfitrion MÉXICO',           special:false },
+    { num:8,   code:'FWC 8',  type:'stadium', label:'Anfitrion ESTADOS UNIDOS',                 special:false },
   ]
 
   const HISTORY = [
-    { num:969, code:'FWC 9',  type:'history', label:'FIFA World Cup History — 1930–1950' },
-    { num:970, code:'FWC 10', type:'history', label:'FIFA World Cup History — 1954–1966' },
-    { num:971, code:'FWC 11', type:'history', label:'FIFA World Cup History — 1970–1978' },
-    { num:972, code:'FWC 12', type:'history', label:'FIFA World Cup History — 1982–1990' },
-    { num:973, code:'FWC 13', type:'history', label:'FIFA World Cup History — 1994–1998' },
-    { num:974, code:'FWC 14', type:'history', label:'FIFA World Cup History — 2002–2006' },
-    { num:975, code:'FWC 15', type:'history', label:'FIFA World Cup History — 2010–2014' },
-    { num:976, code:'FWC 16', type:'history', label:'FIFA World Cup History — 2018–2022' },
-    { num:977, code:'FWC 17', type:'history', label:'Leyendas del Fútbol Mundial',       special:true },
-    { num:978, code:'FWC 18', type:'history', label:'Balones Históricos del Mundial' },
-    { num:979, code:'FWC 19', type:'history', label:'Sede — USA · Canadá · México 2026' },
+    { num:969, code:'FWC 9',  type:'history', label:'FIFA World Cup History — Italy 1934' },
+    { num:970, code:'FWC 10', type:'history', label:'FIFA World Cup History — Uruguay 1950' },
+    { num:971, code:'FWC 11', type:'history', label:'FIFA World Cup History — Alemania 1954' },
+    { num:972, code:'FWC 12', type:'history', label:'FIFA World Cup History — Brasil 1958' },
+    { num:973, code:'FWC 13', type:'history', label:'FIFA World Cup History — Alemania 1974' },
+    { num:974, code:'FWC 14', type:'history', label:'FIFA World Cup History — Argentina 1986' },
+    { num:975, code:'FWC 15', type:'history', label:'FIFA World Cup History — Brasil 1994' },
+    { num:976, code:'FWC 16', type:'history', label:'FIFA World Cup History — Brasil 2002' },
+    { num:977, code:'FWC 17', type:'history', label:'FIFA World Cup History — Italia 2006',       special:true },
+    { num:978, code:'FWC 18', type:'history', label:'FIFA World Cup History — Alemania 2014' },
+    { num:979, code:'FWC 19', type:'history', label:'FIFA World Cup History — Argentina 2022' },
   ]
 
   // ── Set Coca-Cola USA (oficial, 12 láminas) ───────────────────────────────
